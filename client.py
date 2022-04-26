@@ -2,7 +2,8 @@ import socket, threading, pickle
 PORT = 5050
 FORMAT = "utf-8-sig"
 Dis_msg = "disconnecting"
-SERVER = socket.gethostbyname(socket.gethostname())
+# SERVER = socket.gethostbyname(socket.gethostname())
+SERVER = "123.241.254.143"
 ADDR = (SERVER, PORT)
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
