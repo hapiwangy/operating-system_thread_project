@@ -1,4 +1,5 @@
-import socket, threading, pickle, time
+import socket, threading, pickle, time, sending
+from winreg import HKEY_LOCAL_MACHINE
 # 功能可以接收訊息(基本)，之後要可以進型別的處理(爬蟲、寄信等等)
 PORT = 5050
 SERVER = socket.gethostbyname(socket.gethostname())
@@ -23,7 +24,12 @@ def broadcast(message):
     data = message.encode(FORMAT)
     for people in peoples_in_room:
         people.send(data)
-   
+def do_email(conn):
+    data = b""
+    data = conn.recv(4096)
+    data = pickle.loads(data)
+    print(data)
+    sending.send_mail(data[0], data[1], data[2], data[3])
 def handle_msg(conn, addr):
     print(f"[NEW CONNECTIONS] {addr} connected")
     connected = True
@@ -35,6 +41,11 @@ def handle_msg(conn, addr):
             conn.close()
             kickout(conn)
             break
+        elif data[-4:] == "iwse":
+            print(f"start doing {data}")
+            thread = threading.Thread(target=do_email, args = (conn,))
+            thread.start()
+            thread.join()
         else:
             broadcast(data)
             print(f"{data}")
