@@ -1,0 +1,11 @@
+server is started at 192.168.56.1
+[NEW CONNECTIONS] ('192.168.56.1', 5597) connected
+now we got 1 in our chatting room.
+welcome michael
+michael:hihih
+[NEW CONNECTIONS] ('192.168.56.1', 5602) connected
+now we got 2 in our chatting room.
+welcome vivian
+vivian:fuck u
+
+('michael', <socket.socket fd=1144, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.56.1', 5050), raddr=('192.168.56.1', 5597)>)('vivian', <socket.socket fd=1192, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.56.1', 5050), raddr=('192.168.56.1', 5602)>)
