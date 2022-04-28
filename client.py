@@ -43,7 +43,7 @@ def recive():
             client.close()
             break
 
-if __name__ == "__main__":
+def running():
     client.connect(ADDR)
     name = input("ur name:")
     re_thread = threading.Thread(target=recive, daemon=True)
@@ -59,7 +59,11 @@ if __name__ == "__main__":
             thread.join()
         elif send_msg == "exit":
             send(name, "bye bye")
+            time.sleep(2)
             break
         else:
             send(name, send_msg)
-        
+
+
+if __name__ == "__main__":
+    running()        

@@ -11,12 +11,14 @@ server.bind(ADDR)
 FORMAT = "utf-8-sig"
 
 peoples_in_room = []
-def announce(conn,):
+def announce(conn):
     peoples_in_room.append(conn)
 def kickout(conn):
     for x in peoples_in_room:
+        print(f"{x} : {conn}")
         if x == conn:
             peoples_in_room.remove(x)
+            print(f"remove {x}")
             break
     print(peoples_in_room)
 
@@ -35,11 +37,10 @@ def handle_msg(conn, addr):
     connected = True
     while connected:
         data = conn.recv(1024).decode(FORMAT)
-        if  data[-4:] == "exit":
+        if data[-3:] == "bye":
             conn.send("exit".encode(FORMAT))
-            connected = False
-            conn.close()
             kickout(conn)
+            conn.close()
             break
         elif data[-4:] == "iwse":
             print(f"start doing {data}")
