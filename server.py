@@ -33,7 +33,7 @@ def do_email(conn):
     data = b""
     data = conn.recv(4096)
     data = pickle.loads(data)
-    sending.send_mail(data[0], data[1], data[2], data[3])
+    sending.send_mail(data[0], data[1], data[2])
 def handle_msg(conn, addr):
     wtt(f"[NEW CONNECTIONS] {addr} connected")
     data = conn.recv(1024).decode(FORMAT)

@@ -6,15 +6,12 @@ import smtplib
 # info代表基本資料, which代表要傳送的是圖片或是純文字檔案
 # xian20020824@gmail.com
 # "vxpyoxwgxdygouwo"
-def send_mail(info, which, content, app_pass):
+def send_mail(info, content, app_pass):
     contents = MIMEMultipart()
     contents["subject"] = info[0]
     contents["from"] = info[1]
     contents["to"] = info[2]
-    if which == "pic":
-        contents.attach(MIMEText(content))
-    elif which == "text":
-        contents.attach(MIMEText(content))
+    contents.attach(MIMEText(content))
     with smtplib.SMTP(host="smtp.gmail.com", port="587") as smtp:  # 設定SMTP伺服器
         try:
             smtp.ehlo()  # 驗證SMTP伺服器
