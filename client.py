@@ -36,7 +36,7 @@ def recive():
         try:
             message = client.recv(1024).decode(FORMAT)
             print(message)
-            if message == "exit":
+            if message[-4:] == "exit":
                 break
         except:
             print(f"error occur")
@@ -48,6 +48,7 @@ def running():
     name = input("ur name:")
     re_thread = threading.Thread(target=recive, daemon=True)
     re_thread.start()
+    send(name,"")
     while True:
         time.sleep(0.5)
         send_msg = input(f"{name}:")
